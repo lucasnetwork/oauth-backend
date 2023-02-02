@@ -7,6 +7,13 @@ export class registerClient1675294227492 implements MigrationInterface {
         name: 'register_client',
         columns: [
           {
+            name: 'id',
+            isPrimary: true,
+            type: 'integer',
+            isGenerated: true,
+            generationStrategy: 'increment',
+          },
+          {
             name: 'client_id',
             type: 'varchar',
           },
