@@ -12,7 +12,7 @@ export class RegisterClientService {
   ) {}
   private HEX_CLIENT_ID_SIZE = 32;
 
-  async registerClient() {
+  async create() {
     const clientId = randomBytes(this.HEX_CLIENT_ID_SIZE).toString('hex');
     const clientSecret = createHash('sha256').digest('hex');
 

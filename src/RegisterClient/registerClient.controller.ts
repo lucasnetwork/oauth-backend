@@ -5,7 +5,7 @@ import { RegisterClientService } from './registerClient.service';
 export class RegisterClient {
   constructor(private readonly registerClientService: RegisterClientService) {}
   @Post()
-  registerClient() {
-    return this.registerClientService.registerClient();
+  create() {
+    return this.registerClientService.create();
   }
 }
