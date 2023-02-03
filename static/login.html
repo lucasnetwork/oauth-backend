@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form">
+        <fieldset>
+            <label>Email</label>
+            <input id="email" placeholder="email"/>
+        </fieldset>
+        <fieldset>
+            <label>Senha</label>
+            <input id="password" placeholder="password"/>
+        </fieldset>
+        <button>enviar</button>
+    </form>
+</body>
+<script>
+    const form = document.querySelector("form")
+    form.addEventListener("submit",e =>{
+        e.preventDefault()
+        const emailInput = document.querySelector("#email")
+        const passwordInput = document.querySelector("#password")
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+        fetch("/oauth",{
+            method:"POST",
+            body:JSON.stringify({
+                state: params.state,
+                clientId: params.clientId,
+                response_type: 'code',
+                redirect_uri: params.redirect_uri,
+                email:emailInput.value,
+                password:passwordInput.value
+            }),
+            headers: {
+            'Content-Type': 'application/json',
+            'X-RapidAPI-Key': '74cc79460fmsh3c6d0abcb93703cp140eb4jsn8975796733b1',
+            'X-RapidAPI-Host': 'textapis.p.rapidapi.com',
+            "Access-Control-Allow-Origin": "*"
+        }
+
+        }).then(res =>{
+            res.text().then(res =>{
+                console.log(res)
+                window.location =res
+            })
+        })
+    })
+    </script>
+</html>
