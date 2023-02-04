@@ -47,9 +47,11 @@
         }).then(res =>{
             res.text().then(res =>{
                 console.log(res)
-                window.location =res
+                // window.location =res
             })
-        })
+        }).catch(err =>{
+                console.log("err",err)
+            })
     })
     </script>
 </html>

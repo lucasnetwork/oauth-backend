@@ -32,7 +32,7 @@ export class OAuthservice {
     console.log(existClient);
 
     if (!existClient) {
-      return new UnauthorizedException();
+      throw new UnauthorizedException();
     }
     const existUser = await this.userRepository.findOne({
       where: {
@@ -42,7 +42,7 @@ export class OAuthservice {
     });
 
     if (!existUser) {
-      return new UnauthorizedException();
+      throw new UnauthorizedException();
     }
 
     const token = this.jwtService.sign('client_id', {

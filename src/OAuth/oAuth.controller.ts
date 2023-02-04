@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post, Query, Req, Res } from '@nestjs/common';
+import { Body, Controller, Post, Req, Res } from '@nestjs/common';
+import { Response } from 'express';
 import { OAuthservice } from './oAuth.service';
 
 @Controller('oauth')
@@ -16,12 +17,15 @@ export class OAuthController {
       email: string;
       password: string;
     },
-    @Res() res,
-    @Req() require,
+    @Res() res: Response,
   ) {
-    const response = await this.oauthService.create(data);
-    return res.send(
-      `${data.redirect_uri}?code=${response}&state=${data.state}`,
-    );
+    try {
+      const response = await this.oauthService.create(data);
+      return res.send(
+        `${data.redirect_uri}?code=${response}&state=${data.state}`,
+      );
+    } catch (e) {
+      return res.status(400).json({ error: 'error' });
+    }
   }
 }
