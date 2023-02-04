@@ -24,9 +24,10 @@ export class OAuthservice {
     email: string;
     password: string;
   }) {
+    console.log(params.clientId);
     const existClient = await this.registerClientRepository.findOne({
       where: {
-        clientId: params.clientId,
+        clientId: params.clientId || '',
       },
     });
     console.log(existClient);
