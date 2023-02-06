@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post, Query, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { AcessTokenService } from './AcessToken.service';
+import { AcessTokenRequest } from './validator';
 
 @Controller('acess-token')
 export class AcessTokenController {
@@ -9,13 +10,7 @@ export class AcessTokenController {
   @Post()
   async create(
     @Body()
-    data: {
-      grant_type: string;
-      code: string;
-      redirect_uri: string;
-      code_verifier: string; // option pkce
-      client_id: string;
-    },
+    data: AcessTokenRequest,
     @Res() res: Response,
   ) {
     try {

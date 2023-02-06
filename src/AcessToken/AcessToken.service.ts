@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { RegisterClient } from '../database/entities/registerClient';
 import { User } from '../database/entities/user';
+import { AcessTokenRequest } from './validator';
 
 @Injectable()
 export class AcessTokenService {
@@ -17,13 +18,7 @@ export class AcessTokenService {
     private userRepository: Repository<User>,
     private jwtService: JwtService,
   ) {}
-  async create(params: {
-    grant_type: string;
-    code: string;
-    redirect_uri: string;
-    code_verifier: string; // option pkce
-    client_id: string;
-  }) {
+  async create(params: AcessTokenRequest) {
     const isValid = this.jwtService.verify(params.code, {
       secret: this.SECRET,
     });
