@@ -3,12 +3,12 @@ import { JwtService } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RegisterClient } from '../database/entities/registerClient';
 import { User } from '../database/entities/user';
-import { OAuthController } from './oAuth.controller';
-import { OAuthservice } from './oAuth.service';
+import { AuthorizationGrantController } from './AuthorizationGrant.controller';
+import { AuthorizationGrantservice } from './AuthorizationGrant.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([RegisterClient, User])],
-  controllers: [OAuthController],
-  providers: [OAuthservice, JwtService],
+  controllers: [AuthorizationGrantController],
+  providers: [AuthorizationGrantservice, JwtService],
 })
-export class OAuthModule {}
+export class AuthorizationGranthModule {}

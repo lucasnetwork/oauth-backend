@@ -7,13 +7,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RegisterClient } from './database/entities/registerClient';
 import { User } from './database/entities/user';
-import { OAuthModule } from './OAuth/oAuth.module';
+import { AuthorizationGranthModule } from './AuthorizationGrant/AuthorizationGrant.module';
 import { RegisterClientModule } from './RegisterClient/registerClient.module';
 
 @Module({
   imports: [
     RegisterClientModule,
-    OAuthModule,
+    AuthorizationGranthModule,
     AcessTokenModule,
     TypeOrmModule.forRoot({
       type: 'sqlite',

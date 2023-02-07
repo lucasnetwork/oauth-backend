@@ -1,10 +1,10 @@
 import { Body, Controller, Post, Req, Res } from '@nestjs/common';
 import { Response } from 'express';
-import { OAuthservice } from './oAuth.service';
+import { OAuthservice } from './AuthorizationGrant.service';
 import { AuthorizationGrantRequest } from './validator';
 
-@Controller('oauth')
-export class OAuthController {
+@Controller('authorization-grant')
+export class AuthorizationGrantController {
   constructor(private readonly oauthService: OAuthservice) {}
 
   @Post()

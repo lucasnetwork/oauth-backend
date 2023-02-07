@@ -7,7 +7,7 @@ import { User } from '../database/entities/user';
 import { AuthorizationGrantRequest } from './validator';
 
 @Injectable()
-export class OAuthservice {
+export class AuthorizationGrantservice {
   private SECRET = 'secret';
 
   constructor(
