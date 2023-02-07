@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { RegisterClient } from '../database/entities/registerClient';
 import { User } from '../database/entities/user';
+import { AuthorizationGrantRequest } from './validator';
 
 @Injectable()
 export class OAuthservice {
@@ -16,14 +17,7 @@ export class OAuthservice {
     private userRepository: Repository<User>,
     private jwtService: JwtService,
   ) {}
-  async create(params: {
-    state: string;
-    clientId: string;
-    response_type: string;
-    redirect_uri: string;
-    email: string;
-    password: string;
-  }) {
+  async create(params: AuthorizationGrantRequest) {
     console.log(params.clientId);
     const existClient = await this.registerClientRepository.findOne({
       where: {

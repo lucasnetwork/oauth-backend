@@ -1,6 +1,7 @@
 import { Body, Controller, Post, Req, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { OAuthservice } from './oAuth.service';
+import { AuthorizationGrantRequest } from './validator';
 
 @Controller('oauth')
 export class OAuthController {
@@ -9,14 +10,7 @@ export class OAuthController {
   @Post()
   async create(
     @Body()
-    data: {
-      state: string;
-      clientId: string;
-      response_type: string;
-      redirect_uri: string;
-      email: string;
-      password: string;
-    },
+    data: AuthorizationGrantRequest,
     @Res() res: Response,
   ) {
     try {
