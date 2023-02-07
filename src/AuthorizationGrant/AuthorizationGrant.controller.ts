@@ -1,11 +1,13 @@
 import { Body, Controller, Post, Req, Res } from '@nestjs/common';
 import { Response } from 'express';
-import { OAuthservice } from './AuthorizationGrant.service';
+import { AuthorizationGrantservice } from './AuthorizationGrant.service';
 import { AuthorizationGrantRequest } from './validator';
 
 @Controller('authorization-grant')
 export class AuthorizationGrantController {
-  constructor(private readonly oauthService: OAuthservice) {}
+  constructor(
+    private readonly authorizationGrantService: AuthorizationGrantservice,
+  ) {}
 
   @Post()
   async create(
@@ -14,7 +16,7 @@ export class AuthorizationGrantController {
     @Res() res: Response,
   ) {
     try {
-      const response = await this.oauthService.create(data);
+      const response = await this.authorizationGrantService.create(data);
       return res.send(
         `${data.redirect_uri}?code=${response}&state=${data.state}`,
       );
