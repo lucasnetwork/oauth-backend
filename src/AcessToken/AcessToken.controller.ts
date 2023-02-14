@@ -10,7 +10,7 @@ export class AcessTokenController {
   @Post()
   async create(
     @Body()
-    data: AcessTokenRequest,
+    data,
     @Res() res: Response,
   ) {
     try {

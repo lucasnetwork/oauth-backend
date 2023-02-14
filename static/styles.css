@@ -1,0 +1,51 @@
+body{
+    width:100vw;
+    height:100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+form{
+    width:400px;
+    display: flex;
+    flex-direction: column;
+    row-gap:16px;
+    
+}
+
+fieldset{
+    border:none;
+    display: flex;
+    flex-direction: column;
+    padding:0;
+    width:100%;
+}
+
+button{
+    width:100%;
+    font-size: 24px;
+    background-color: #3066BE;
+    border:none;
+    border-radius: 5px;
+    color:#fff;
+    padding:8px 0;  
+    cursor:pointer
+}
+input{
+    font-size: 16px;
+
+}
+
+label{
+    font-size: 16px;
+}
+
+.container p{
+    font-size:24px
+}
+
+.display-none{
+    display: none;
+}

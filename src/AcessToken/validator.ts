@@ -6,8 +6,6 @@ export class AcessTokenRequest {
   @IsString()
   code: string;
   @IsString()
-  redirect_uri: string;
-  @IsString()
   @IsOptional()
   code_verifier: string;
   @IsString()

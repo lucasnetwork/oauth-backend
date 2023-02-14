@@ -5,29 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <form id="form">
-        <fieldset>
-            <label>Email</label>
-            <input id="email" placeholder="email"/>
-        </fieldset>
-        <fieldset>
-            <label>Senha</label>
-            <input id="password" placeholder="password"/>
-        </fieldset>
-        <button>enviar</button>
-    </form>
+
+        <form id="form">
+            <h1>OAUTH</h1>
+            <fieldset>
+                <label>Email</label>
+                <input id="email" autocomplete="off" placeholder="email"/>
+            </fieldset>
+            <fieldset>
+                <label>Senha</label>
+                <input type="password" id="password" placeholder="senha"/>
+            </fieldset>
+            <button>enviar</button>
+        </form>
+        <div class="container display-none">
+            <p>Logando nesse formulário,voce dará acesso a aplicação dados como:</p>
+            <ul>
+                <li>Foto de perfil</li>
+            </ul>
+            <button type="button" id="button-send">
+                Aceitar
+            </button>
+        </div>
 </body>
 <script>
     const form = document.querySelector("form")
-    form.addEventListener("submit",e =>{
-        e.preventDefault()
+    const container = document.querySelector(".container")
+    const buttonSend = document.querySelector("#button-send")
+    buttonSend.addEventListener("click",()=>{
         const emailInput = document.querySelector("#email")
         const passwordInput = document.querySelector("#password")
         const urlSearchParams = new URLSearchParams(window.location.search);
         const params = Object.fromEntries(urlSearchParams.entries());
-        fetch("/oauth",{
+        fetch("/authorization-grant",{
             method:"POST",
             body:JSON.stringify({
                 state: params.state,
@@ -46,12 +59,18 @@
 
         }).then(res =>{
             res.text().then(res =>{
-                console.log(res)
-                // window.location =res
+                window.location =res
             })
         }).catch(err =>{
                 console.log("err",err)
             })
+    })
+
+    form.addEventListener("submit",e =>{
+        e.preventDefault()
+        container.classList.remove("display-none")
+        form.classList.add("display-none")
+        
     })
     </script>
 </html>
